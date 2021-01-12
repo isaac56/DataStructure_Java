@@ -21,9 +21,7 @@ public class SingleLinkedList<T> implements CustomList<T>{
         while(curNode.next != null) {
             curNode = curNode.next;
         }
-
-        Node newNode = new Node(val);
-        add(curNode, newNode);
+        add(curNode, new Node(val));
     }
 
     public void add(int index, T val) throws IndexOutOfBoundsException {
@@ -36,14 +34,10 @@ public class SingleLinkedList<T> implements CustomList<T>{
             curNode = curNode.next;
             curIdx++;
         }
-        Node newNode = new Node(val);
-        add(curNode, newNode);
+        add(curNode, new Node(val));
     }
 
     public boolean remove(T val) {
-        if(head.next == null)
-            return false;
-
         Node curNode = head;
         while(curNode.next != null) {
             if(curNode.next.value.equals(val))
