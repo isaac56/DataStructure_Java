@@ -58,9 +58,9 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
         node.prev = null;
     }
 
-    public void remove(T val){
+    public boolean remove(T val){
         if(head == null)
-            return;
+            return false;
         Node curNode = head;
         while(curNode.next != head){
             if(curNode.value.equals(val)){
@@ -76,8 +76,9 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
                     head = curNode.next;
             }
             remove(curNode);
-            return;
+            return true;
         }
+        return false;
     }
 
     public List<T> getList(){
