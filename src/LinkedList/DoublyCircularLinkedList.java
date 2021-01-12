@@ -107,11 +107,7 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
         protected T getValue(){
             return this.value;
         }
-
-        protected Node getNext(){
-            return this.next;
-        }
-
+        protected Node getNext(){ return this.next; }
         protected Node getPrev(){
             return this.prev;
         }
