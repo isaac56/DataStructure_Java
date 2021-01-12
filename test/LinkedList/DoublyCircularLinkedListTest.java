@@ -1,5 +1,6 @@
 package LinkedList;
 
+import CustomInterface.CustomList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoublyCircularLinkedListTest {
-    DoublyCircularLinkedList<Integer> test;
+    CustomList<Integer> test;
 
     @BeforeEach
     void setUp() {
