@@ -7,48 +7,34 @@ import java.util.List;
 public class DoublyCircularLinkedList<T> implements CustomList<T> {
     protected Node head;
 
-    private void add(Node node, Node toAdd) {
-        toAdd.next = node.next;
-        toAdd.prev = node;
-        toAdd.next.prev = toAdd;
-        toAdd.prev.next = toAdd;
+    public DoublyCircularLinkedList(){
+        head = new Node(null);
+        head.next = head;
+        head.prev = head;
+    }
+
+    private void add(Node node, Node newNode) {
+        newNode.next = node.next;
+        newNode.prev = node;
+        newNode.next.prev = newNode;
+        newNode.prev.next = newNode;
     }
 
     public void add(T val) {
-        Node toAdd = new Node(val);
-        if(head == null) {
-            toAdd.next = toAdd;
-            toAdd.prev = toAdd;
-            head = toAdd;
-        }
-        else{
-            add(head.prev, toAdd);
-        }
+        add(head.prev, new Node(val));
     }
 
     public void add(int index, T val) throws IndexOutOfBoundsException {
         if(index < 0)
             throw new IndexOutOfBoundsException("Index can't be lower than 0.");
 
-        if(head == null) {
-            add(val);
-            return;
-        }
-
-        Node toAdd = new Node(val);
-        if(index == 0) {
-            add(head.prev, toAdd);
-            head = toAdd;
-            return;
-        }
-
         Node curNode = head;
-        int curIdx = 0;
+        int curIdx = -1;
         while(curNode.next != head && curIdx < index-1) {
             curNode = curNode.next;
             curIdx++;
         }
-        add(curNode, toAdd);
+        add(curNode, new Node(val));
     }
 
     private void remove(Node node){
@@ -59,39 +45,24 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
     }
 
     public boolean remove(T val){
-        if(head == null)
-            return false;
-        Node curNode = head;
-        while(curNode.next != head){
+        Node curNode = head.next;
+        while(curNode != head) {
             if(curNode.value.equals(val)){
-                break;
+                remove(curNode);
+                return true;
             }
             curNode = curNode.next;
-        }
-        if(curNode.value.equals(val)){
-            if(curNode == head) {
-                if(curNode.next == head)
-                    head = null;
-                else
-                    head = curNode.next;
-            }
-            remove(curNode);
-            return true;
         }
         return false;
     }
 
     public List<T> getList(){
-        if(head == null){
-            return new ArrayList<>();
-        }
         List<T> list = new ArrayList<>();
-        Node curNode = head;
-        while(curNode.next != head) {
+        Node curNode = head.next;
+        while(curNode != head) {
             list.add(curNode.value);
             curNode = curNode.next;
         }
-        list.add(curNode.value);
         return list;
     }
 
