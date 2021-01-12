@@ -93,17 +93,4 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
             return this.prev;
         }
     }
-
-    public void show(){
-        if(head == null) {
-            System.out.println("Empty.");
-            return;
-        }
-        Node curNode = head;
-        while(curNode.next != head) {
-            System.out.print(curNode.value + ", ");
-            curNode = curNode.next;
-        }
-        System.out.println(curNode.value);
-    }
 }
