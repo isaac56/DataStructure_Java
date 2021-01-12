@@ -6,6 +6,7 @@ import java.util.List;
 
 public class DoublyCircularLinkedList<T> implements CustomList<T> {
     protected Node head;
+    private int size;
 
     public DoublyCircularLinkedList(){
         head = new Node(null);
@@ -13,11 +14,17 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
         head.prev = head;
     }
 
+    public int getSize(){
+        return size;
+    }
+
     private void add(Node node, Node newNode) {
         newNode.next = node.next;
         newNode.prev = node;
         newNode.next.prev = newNode;
         newNode.prev.next = newNode;
+
+        size++;
     }
 
     public void add(T val) {
@@ -42,6 +49,8 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
         node.next.prev = node.prev;
         node.next = null;
         node.prev = null;
+
+        size--;
     }
 
     public boolean remove(T val){
@@ -84,8 +93,6 @@ public class DoublyCircularLinkedList<T> implements CustomList<T> {
             return this.prev;
         }
     }
-
-
 
     public void show(){
         if(head == null) {

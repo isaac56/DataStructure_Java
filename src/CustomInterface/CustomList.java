@@ -7,4 +7,5 @@ public interface CustomList<T> {
     public void add(int index, T val);
     public boolean remove(T val);
     public List<T> getList();
+    public int getSize();
 }
